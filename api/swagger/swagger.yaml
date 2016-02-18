@@ -1,0 +1,164 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Contacts MVC API Server
+  description: |
+    [Contacts MVC](https://github.com/contacts-mvc) project's goal is to implement
+    a contacts manager application in different technologies. This is the API that
+    each implementation will use.
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+
+  /swagger:
+    x-swagger-pipe: swagger_raw
+  '/contact/{id}':
+    x-swagger-router-controller: contact
+    get:
+      description: Get one `Contact` with given id.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of a `Contact`
+          type: integer
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Contact'
+    put:
+      description: Update a `Contact` with given id.
+      parameters:
+        - name: body
+          description: A new `Contact`
+          in: body
+          schema:
+            $ref: '#/definitions/Contact'
+        - name: id
+          in: path
+          required: true
+          description: ID of a `Contact`
+          type: integer
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Contact'
+    delete:
+      description: Delete a `Contact` with given id.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of a `Contact`
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /contacts:
+    x-swagger-router-controller: contacts
+    post:
+      description: Make a new `Contact`.
+      parameters:
+        - name: body
+          description: A new `Contact`
+          in: body
+          schema:
+            $ref: '#/definitions/Contact'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Contact'
+    get:
+      description: Get all `Contact`.
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Contact'
+# complex objects have schema definitions
+definitions:
+  Contact:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      nickName:
+        type: string
+      title:
+        type: string
+      companyName:
+        type: string
+      pictures:
+        type: array
+        items:
+          type: object
+          properties:
+            url:
+              type: string
+      phoneNumbers:
+        type: array
+        items:
+          type: object
+          properties:
+            title:
+              type: string
+            number:
+              type: integer
+      emails:
+        type: array
+        items:
+          type: object
+          properties:
+            title:
+              type: string
+            email:
+              type: string
+      addresses:
+        type: array
+        items:
+          type: object
+          properties:
+            title:
+              type: string
+            address:
+              type: object
+              properties:
+                street1:
+                  type: string
+                street2:
+                  type: string
+                city:
+                  type: string
+                state:
+                  type: string
+                country:
+                  type: string
+      url:
+        type: array
+        items:
+          type: object
+          properties:
+            title:
+              type: string
+            url:
+              type: string
