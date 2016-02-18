@@ -1,14 +1,19 @@
 'use strict';
 
+const db = require('./db');
+
 module.exports = {
 
   // GET /contacts
   get(req, res) {
-    res.json({task: 'TODO'});
+    res.json(db);
   },
 
   // POST /contact/{id}
   post(req, res) {
-    res.json({task: 'TODO'});
+    const newContact = req.swagger.params.body.value;
+
+    db.push(newContact);
+    res.json(newContact);
   }
 }

@@ -1,8 +1,16 @@
+const db = require('./db');
+
 module.exports = {
 
   // GET /contact/{id}
   get(req, res) {
-    res.json({task: 'TODO'});
+    const id = req.swagger.params.id;
+    const contact = db.filter(contact=> contact.id === id)[0];
+
+    if (!contact) {
+      return res.status(404).send('Not found');
+    }
+    res.json(contact);
   },
 
   // PUT /contact/{id}

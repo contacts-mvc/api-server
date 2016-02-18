@@ -21,6 +21,21 @@ consumes:
 # format of the responses to the client (Accepts)
 produces:
   - application/json
+parameters:
+  id:
+    name: id
+    in: path
+    required: true
+    description: ID of a `Contact` (UUID v4)
+    type: string
+    minLength: 36
+    maxLength: 36
+  body:
+    name: body
+    description: A new `Contact`
+    in: body
+    schema:
+      $ref: '#/definitions/Contact'
 paths:
 
   /swagger:
@@ -30,11 +45,7 @@ paths:
     get:
       description: Get one `Contact` with given id.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: ID of a `Contact`
-          type: integer
+        - $ref: '#/parameters/id'
       responses:
         '200':
           description: OK
@@ -43,16 +54,8 @@ paths:
     put:
       description: Update a `Contact` with given id.
       parameters:
-        - name: body
-          description: A new `Contact`
-          in: body
-          schema:
-            $ref: '#/definitions/Contact'
-        - name: id
-          in: path
-          required: true
-          description: ID of a `Contact`
-          type: integer
+        - $ref: '#/parameters/body'
+        - $ref: '#/parameters/id'
       responses:
         '200':
           description: OK
@@ -61,11 +64,7 @@ paths:
     delete:
       description: Delete a `Contact` with given id.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: ID of a `Contact`
-          type: integer
+        - $ref: '#/parameters/id'
       responses:
         '200':
           description: OK
@@ -74,11 +73,7 @@ paths:
     post:
       description: Make a new `Contact`.
       parameters:
-        - name: body
-          description: A new `Contact`
-          in: body
-          schema:
-            $ref: '#/definitions/Contact'
+        - $ref: '#/parameters/body'
       responses:
         '200':
           description: OK
@@ -95,9 +90,19 @@ paths:
               $ref: '#/definitions/Contact'
 # complex objects have schema definitions
 definitions:
+  UUID:
+    description: UUID v4
+    type: string
+    minLength: 36
+    maxLength: 36
   Contact:
     type: object
+    required:
+      - firstName
+      - id
     properties:
+      id:
+        $ref: '#/definitions/UUID'
       firstName:
         type: string
       lastName:
