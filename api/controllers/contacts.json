@@ -1,11 +1,11 @@
 [
     {
-      "id": "dasdas-sdasd-qeqsd-sdasd",
-      "firstName": "Homer",
-      "lastName": "Simpson"
+        "id": "98b8026f-f74d-4b6e-94b3-6faecf4435ce",
+        "firstName": "Homer",
+        "lastName": "Simpson"
     },
     {
-       "id": "9bf34709-6151-439c-a741-9fc455430b11",
+        "id": "9bf34709-6151-439c-a741-9fc455430b11",
         "firstName": "Peter",
         "lastName": "Griffin",
         "nickName": "Pete",
@@ -27,10 +27,10 @@
             }
         ],
         "emails": [
-          {
-            "title": "Work",
-            "email": "peter@businessdepot.com"
-          }
+            {
+                "title": "Work",
+                "email": "peter@businessdepot.com"
+            }
         ],
         "addresses": [
             {
@@ -45,10 +45,10 @@
             }
         ],
         "url": [
-          {
-            "title": "Home Page",
-            "url": "http://peter-griffin.com"
-          }
+            {
+                "title": "Home Page",
+                "url": "http://peter-griffin.com"
+            }
         ]
     }
 ]
