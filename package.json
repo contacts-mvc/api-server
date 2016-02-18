@@ -1,7 +1,6 @@
 {
   "name": "contacts-mvc-api-server",
   "version": "0.0.1",
-  "private": true,
   "description": "New Swagger API Project",
   "keywords": [],
   "author": "",
